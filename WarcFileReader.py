@@ -29,9 +29,9 @@ def count_words(words):
     return count
 
 # Change the range to suit your file sequences, by default it will be running for 0-20
-for i in range(0,2):
+for i in range(1,5):
     warc_count = str(i).zfill(2)
-    warc_path = '0202wb-' + warc_count + ".warc.gz"
+    warc_path = '0100wb-' + warc_count + ".warc.gz"
     # Open the WARC file
     f = warc.open(warc_path)
     print("Open file:", warc_count )
@@ -53,7 +53,7 @@ for i in range(0,2):
                 for y in sentences:
                     y = y.replace('\\', '')
                     final_list.append(y)
-        if count > 100:
+        if count > 5000:
             count = 0
             filecount = filecount + 1
             filepath = filename + warc_count + '-' + str(filecount) + ext
@@ -62,8 +62,6 @@ for i in range(0,2):
                 writer.writerow(final_list)
             final_list = []
             print("done file:", filecount)
-            if filecount > 2:
-                break
 
     # Test Console output
     print('done')
